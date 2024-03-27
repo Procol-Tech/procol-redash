@@ -51,6 +51,10 @@ services:
   redis:
     image: redis:7-alpine
     restart: unless-stopped
+    volumes:
+      - type: volume
+        source: redis_data
+        target: /data
   postgres:
     image: pgautoupgrade/pgautoupgrade:15-alpine3.8
     ports:
@@ -68,3 +72,6 @@ services:
       - "1080:1080"
       - "1025:1025"
     restart: unless-stopped
+
+volumes:
+  redis_data:
